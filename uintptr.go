@@ -22,12 +22,6 @@
 
 package atomic
 
-import (
-	"encoding/json"
-	"strconv"
-	"sync/atomic"
-)
-
 // Uintptr is an atomic wrapper around uintptr.
 type Uintptr struct {
 	_ nocmp // disallow non-atomic comparison
@@ -36,74 +30,53 @@ type Uintptr struct {
 }
 
 // NewUintptr creates a new Uintptr.
-func NewUintptr(val uintptr) *Uintptr {
-	return &Uintptr{v: val}
-}
+func NewUintptr(val uintptr) *Uintptr { _ = "STUB: not implemented"; return nil }
 
 // Load atomically loads the wrapped value.
-func (i *Uintptr) Load() uintptr {
-	return atomic.LoadUintptr(&i.v)
-}
+func (i *Uintptr) Load() uintptr { _ = "STUB: not implemented"; return 0 }
 
 // Add atomically adds to the wrapped uintptr and returns the new value.
-func (i *Uintptr) Add(delta uintptr) uintptr {
-	return atomic.AddUintptr(&i.v, delta)
-}
+func (i *Uintptr) Add(delta uintptr) uintptr { _ = "STUB: not implemented"; return 0 }
 
 // Sub atomically subtracts from the wrapped uintptr and returns the new value.
-func (i *Uintptr) Sub(delta uintptr) uintptr {
-	return atomic.AddUintptr(&i.v, ^(delta - 1))
-}
+func (i *Uintptr) Sub(delta uintptr) uintptr { _ = "STUB: not implemented"; return 0 }
 
 // Inc atomically increments the wrapped uintptr and returns the new value.
 func (i *Uintptr) Inc() uintptr {
-	return i.Add(1)
+	_ = "STUB: not implemented"
+
+	// Dec atomically decrements the wrapped uintptr and returns the new value.
+	return 0
 }
 
-// Dec atomically decrements the wrapped uintptr and returns the new value.
 func (i *Uintptr) Dec() uintptr {
-	return i.Sub(1)
+	_ = "STUB: not implemented"
+
+	// CAS is an atomic compare-and-swap.
+	//
+	// Deprecated: Use CompareAndSwap.
+	return 0
 }
 
-// CAS is an atomic compare-and-swap.
-//
-// Deprecated: Use CompareAndSwap.
-func (i *Uintptr) CAS(old, new uintptr) (swapped bool) {
-	return i.CompareAndSwap(old, new)
-}
+func (i *Uintptr) CAS(old, new uintptr) (swapped bool) { _ = "STUB: not implemented"; return false }
 
 // CompareAndSwap is an atomic compare-and-swap.
 func (i *Uintptr) CompareAndSwap(old, new uintptr) (swapped bool) {
-	return atomic.CompareAndSwapUintptr(&i.v, old, new)
+	_ = "STUB: not implemented"
+	return false
 }
 
 // Store atomically stores the passed value.
-func (i *Uintptr) Store(val uintptr) {
-	atomic.StoreUintptr(&i.v, val)
-}
+func (i *Uintptr) Store(val uintptr) { _ = "STUB: not implemented"; return }
 
 // Swap atomically swaps the wrapped uintptr and returns the old value.
-func (i *Uintptr) Swap(val uintptr) (old uintptr) {
-	return atomic.SwapUintptr(&i.v, val)
-}
+func (i *Uintptr) Swap(val uintptr) (old uintptr) { _ = "STUB: not implemented"; return 0 }
 
 // MarshalJSON encodes the wrapped uintptr into JSON.
-func (i *Uintptr) MarshalJSON() ([]byte, error) {
-	return json.Marshal(i.Load())
-}
+func (i *Uintptr) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // UnmarshalJSON decodes JSON into the wrapped uintptr.
-func (i *Uintptr) UnmarshalJSON(b []byte) error {
-	var v uintptr
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	i.Store(v)
-	return nil
-}
+func (i *Uintptr) UnmarshalJSON(b []byte) error { _ = "STUB: not implemented"; return nil }
 
 // String encodes the wrapped value as a string.
-func (i *Uintptr) String() string {
-	v := i.Load()
-	return strconv.FormatUint(uint64(v), 10)
-}
+func (i *Uintptr) String() string { _ = "STUB: not implemented"; return "" }

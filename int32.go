@@ -22,12 +22,6 @@
 
 package atomic
 
-import (
-	"encoding/json"
-	"strconv"
-	"sync/atomic"
-)
-
 // Int32 is an atomic wrapper around int32.
 type Int32 struct {
 	_ nocmp // disallow non-atomic comparison
@@ -36,74 +30,53 @@ type Int32 struct {
 }
 
 // NewInt32 creates a new Int32.
-func NewInt32(val int32) *Int32 {
-	return &Int32{v: val}
-}
+func NewInt32(val int32) *Int32 { _ = "STUB: not implemented"; return nil }
 
 // Load atomically loads the wrapped value.
-func (i *Int32) Load() int32 {
-	return atomic.LoadInt32(&i.v)
-}
+func (i *Int32) Load() int32 { _ = "STUB: not implemented"; return 0 }
 
 // Add atomically adds to the wrapped int32 and returns the new value.
-func (i *Int32) Add(delta int32) int32 {
-	return atomic.AddInt32(&i.v, delta)
-}
+func (i *Int32) Add(delta int32) int32 { _ = "STUB: not implemented"; return 0 }
 
 // Sub atomically subtracts from the wrapped int32 and returns the new value.
-func (i *Int32) Sub(delta int32) int32 {
-	return atomic.AddInt32(&i.v, -delta)
-}
+func (i *Int32) Sub(delta int32) int32 { _ = "STUB: not implemented"; return 0 }
 
 // Inc atomically increments the wrapped int32 and returns the new value.
 func (i *Int32) Inc() int32 {
-	return i.Add(1)
+	_ = "STUB: not implemented"
+
+	// Dec atomically decrements the wrapped int32 and returns the new value.
+	return 0
 }
 
-// Dec atomically decrements the wrapped int32 and returns the new value.
 func (i *Int32) Dec() int32 {
-	return i.Sub(1)
+	_ = "STUB: not implemented"
+
+	// CAS is an atomic compare-and-swap.
+	//
+	// Deprecated: Use CompareAndSwap.
+	return 0
 }
 
-// CAS is an atomic compare-and-swap.
-//
-// Deprecated: Use CompareAndSwap.
-func (i *Int32) CAS(old, new int32) (swapped bool) {
-	return i.CompareAndSwap(old, new)
-}
+func (i *Int32) CAS(old, new int32) (swapped bool) { _ = "STUB: not implemented"; return false }
 
 // CompareAndSwap is an atomic compare-and-swap.
 func (i *Int32) CompareAndSwap(old, new int32) (swapped bool) {
-	return atomic.CompareAndSwapInt32(&i.v, old, new)
+	_ = "STUB: not implemented"
+	return false
 }
 
 // Store atomically stores the passed value.
-func (i *Int32) Store(val int32) {
-	atomic.StoreInt32(&i.v, val)
-}
+func (i *Int32) Store(val int32) { _ = "STUB: not implemented"; return }
 
 // Swap atomically swaps the wrapped int32 and returns the old value.
-func (i *Int32) Swap(val int32) (old int32) {
-	return atomic.SwapInt32(&i.v, val)
-}
+func (i *Int32) Swap(val int32) (old int32) { _ = "STUB: not implemented"; return 0 }
 
 // MarshalJSON encodes the wrapped int32 into JSON.
-func (i *Int32) MarshalJSON() ([]byte, error) {
-	return json.Marshal(i.Load())
-}
+func (i *Int32) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // UnmarshalJSON decodes JSON into the wrapped int32.
-func (i *Int32) UnmarshalJSON(b []byte) error {
-	var v int32
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	i.Store(v)
-	return nil
-}
+func (i *Int32) UnmarshalJSON(b []byte) error { _ = "STUB: not implemented"; return nil }
 
 // String encodes the wrapped value as a string.
-func (i *Int32) String() string {
-	v := i.Load()
-	return strconv.FormatInt(int64(v), 10)
-}
+func (i *Int32) String() string { _ = "STUB: not implemented"; return "" }

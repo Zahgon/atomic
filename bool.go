@@ -22,10 +22,6 @@
 
 package atomic
 
-import (
-	"encoding/json"
-)
-
 // Bool is an atomic type-safe wrapper for bool values.
 type Bool struct {
 	_ nocmp // disallow non-atomic comparison
@@ -36,53 +32,31 @@ type Bool struct {
 var _zeroBool bool
 
 // NewBool creates a new Bool.
-func NewBool(val bool) *Bool {
-	x := &Bool{}
-	if val != _zeroBool {
-		x.Store(val)
-	}
-	return x
-}
+func NewBool(val bool) *Bool { _ = "STUB: not implemented"; return nil }
 
 // Load atomically loads the wrapped bool.
-func (x *Bool) Load() bool {
-	return truthy(x.v.Load())
-}
+func (x *Bool) Load() bool { _ = "STUB: not implemented"; return false }
 
 // Store atomically stores the passed bool.
-func (x *Bool) Store(val bool) {
-	x.v.Store(boolToInt(val))
-}
+func (x *Bool) Store(val bool) { _ = "STUB: not implemented"; return }
 
 // CAS is an atomic compare-and-swap for bool values.
 //
 // Deprecated: Use CompareAndSwap.
-func (x *Bool) CAS(old, new bool) (swapped bool) {
-	return x.CompareAndSwap(old, new)
-}
+func (x *Bool) CAS(old, new bool) (swapped bool) { _ = "STUB: not implemented"; return false }
 
 // CompareAndSwap is an atomic compare-and-swap for bool values.
 func (x *Bool) CompareAndSwap(old, new bool) (swapped bool) {
-	return x.v.CompareAndSwap(boolToInt(old), boolToInt(new))
+	_ = "STUB: not implemented"
+	return false
 }
 
 // Swap atomically stores the given bool and returns the old
 // value.
-func (x *Bool) Swap(val bool) (old bool) {
-	return truthy(x.v.Swap(boolToInt(val)))
-}
+func (x *Bool) Swap(val bool) (old bool) { _ = "STUB: not implemented"; return false }
 
 // MarshalJSON encodes the wrapped bool into JSON.
-func (x *Bool) MarshalJSON() ([]byte, error) {
-	return json.Marshal(x.Load())
-}
+func (x *Bool) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // UnmarshalJSON decodes a bool from JSON.
-func (x *Bool) UnmarshalJSON(b []byte) error {
-	var v bool
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	x.Store(v)
-	return nil
-}
+func (x *Bool) UnmarshalJSON(b []byte) error { _ = "STUB: not implemented"; return nil }

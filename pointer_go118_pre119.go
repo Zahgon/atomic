@@ -23,38 +23,25 @@
 
 package atomic
 
-import "unsafe"
-
 type Pointer[T any] struct {
 	_ nocmp // disallow non-atomic comparison
 	p UnsafePointer
 }
 
 // NewPointer creates a new Pointer.
-func NewPointer[T any](v *T) *Pointer[T] {
-	var p Pointer[T]
-	if v != nil {
-		p.p.Store(unsafe.Pointer(v))
-	}
-	return &p
-}
+func NewPointer[T any](v *T) *Pointer[T] { _ = "STUB: not implemented"; return nil }
 
 // Load atomically loads the wrapped value.
-func (p *Pointer[T]) Load() *T {
-	return (*T)(p.p.Load())
-}
+func (p *Pointer[T]) Load() *T { _ = "STUB: not implemented"; return nil }
 
 // Store atomically stores the passed value.
-func (p *Pointer[T]) Store(val *T) {
-	p.p.Store(unsafe.Pointer(val))
-}
+func (p *Pointer[T]) Store(val *T) { _ = "STUB: not implemented"; return }
 
 // Swap atomically swaps the wrapped pointer and returns the old value.
-func (p *Pointer[T]) Swap(val *T) (old *T) {
-	return (*T)(p.p.Swap(unsafe.Pointer(val)))
-}
+func (p *Pointer[T]) Swap(val *T) (old *T) { _ = "STUB: not implemented"; return nil }
 
 // CompareAndSwap is an atomic compare-and-swap.
 func (p *Pointer[T]) CompareAndSwap(old, new *T) (swapped bool) {
-	return p.p.CompareAndSwap(unsafe.Pointer(old), unsafe.Pointer(new))
+	_ = "STUB: not implemented"
+	return false
 }

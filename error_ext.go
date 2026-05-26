@@ -27,13 +27,6 @@ package atomic
 
 type packedError struct{ Value error }
 
-func packError(v error) interface{} {
-	return packedError{v}
-}
+func packError(v error) interface{} { _ = "STUB: not implemented"; return nil }
 
-func unpackError(v interface{}) error {
-	if err, ok := v.(packedError); ok {
-		return err.Value
-	}
-	return nil
-}
+func unpackError(v interface{}) error { _ = "STUB: not implemented"; return nil }

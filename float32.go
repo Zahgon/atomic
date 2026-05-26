@@ -22,11 +22,6 @@
 
 package atomic
 
-import (
-	"encoding/json"
-	"math"
-)
-
 // Float32 is an atomic type-safe wrapper for float32 values.
 type Float32 struct {
 	_ nocmp // disallow non-atomic comparison
@@ -37,41 +32,20 @@ type Float32 struct {
 var _zeroFloat32 float32
 
 // NewFloat32 creates a new Float32.
-func NewFloat32(val float32) *Float32 {
-	x := &Float32{}
-	if val != _zeroFloat32 {
-		x.Store(val)
-	}
-	return x
-}
+func NewFloat32(val float32) *Float32 { _ = "STUB: not implemented"; return nil }
 
 // Load atomically loads the wrapped float32.
-func (x *Float32) Load() float32 {
-	return math.Float32frombits(x.v.Load())
-}
+func (x *Float32) Load() float32 { _ = "STUB: not implemented"; return 0 }
 
 // Store atomically stores the passed float32.
-func (x *Float32) Store(val float32) {
-	x.v.Store(math.Float32bits(val))
-}
+func (x *Float32) Store(val float32) { _ = "STUB: not implemented"; return }
 
 // Swap atomically stores the given float32 and returns the old
 // value.
-func (x *Float32) Swap(val float32) (old float32) {
-	return math.Float32frombits(x.v.Swap(math.Float32bits(val)))
-}
+func (x *Float32) Swap(val float32) (old float32) { _ = "STUB: not implemented"; return 0 }
 
 // MarshalJSON encodes the wrapped float32 into JSON.
-func (x *Float32) MarshalJSON() ([]byte, error) {
-	return json.Marshal(x.Load())
-}
+func (x *Float32) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // UnmarshalJSON decodes a float32 from JSON.
-func (x *Float32) UnmarshalJSON(b []byte) error {
-	var v float32
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	x.Store(v)
-	return nil
-}
+func (x *Float32) UnmarshalJSON(b []byte) error { _ = "STUB: not implemented"; return nil }

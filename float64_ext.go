@@ -20,35 +20,18 @@
 
 package atomic
 
-import (
-	"math"
-	"strconv"
-)
-
 //go:generate bin/gen-atomicwrapper -name=Float64 -type=float64 -wrapped=Uint64 -pack=math.Float64bits -unpack=math.Float64frombits -swap -json -imports math -file=float64.go
 
 // Add atomically adds to the wrapped float64 and returns the new value.
-func (f *Float64) Add(delta float64) float64 {
-	for {
-		old := f.Load()
-		new := old + delta
-		if f.CAS(old, new) {
-			return new
-		}
-	}
-}
+func (f *Float64) Add(delta float64) float64 { _ = "STUB: not implemented"; return 0 }
 
 // Sub atomically subtracts from the wrapped float64 and returns the new value.
-func (f *Float64) Sub(delta float64) float64 {
-	return f.Add(-delta)
-}
+func (f *Float64) Sub(delta float64) float64 { _ = "STUB: not implemented"; return 0 }
 
 // CAS is an atomic compare-and-swap for float64 values.
 //
 // Deprecated: Use CompareAndSwap
-func (f *Float64) CAS(old, new float64) (swapped bool) {
-	return f.CompareAndSwap(old, new)
-}
+func (f *Float64) CAS(old, new float64) (swapped bool) { _ = "STUB: not implemented"; return false }
 
 // CompareAndSwap is an atomic compare-and-swap for float64 values.
 //
@@ -66,11 +49,13 @@ func (f *Float64) CAS(old, new float64) (swapped bool) {
 //
 // If CompareAndSwap did not match NaN to match, then the above would loop forever.
 func (f *Float64) CompareAndSwap(old, new float64) (swapped bool) {
-	return f.v.CompareAndSwap(math.Float64bits(old), math.Float64bits(new))
+	_ = "STUB: not implemented"
+	return false
 }
 
 // String encodes the wrapped value as a string.
 func (f *Float64) String() string {
+	_ = "STUB: not implemented"
 	// 'g' is the behavior for floats with %v.
-	return strconv.FormatFloat(f.Load(), 'g', -1, 64)
+	return ""
 }

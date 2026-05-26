@@ -24,13 +24,6 @@ import "time"
 
 //go:generate bin/gen-atomicwrapper -name=Time -type=time.Time -wrapped=Value -pack=packTime -unpack=unpackTime -imports time -file=time.go
 
-func packTime(t time.Time) interface{} {
-	return t
-}
+func packTime(t time.Time) interface{} { _ = "STUB: not implemented"; return nil }
 
-func unpackTime(v interface{}) time.Time {
-	if t, ok := v.(time.Time); ok {
-		return t
-	}
-	return time.Time{}
-}
+func unpackTime(v interface{}) time.Time { _ = "STUB: not implemented"; return *new(time.Time) }

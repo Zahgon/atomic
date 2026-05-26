@@ -23,7 +23,6 @@
 package atomic
 
 import (
-	"encoding/json"
 	"time"
 )
 
@@ -37,53 +36,37 @@ type Duration struct {
 var _zeroDuration time.Duration
 
 // NewDuration creates a new Duration.
-func NewDuration(val time.Duration) *Duration {
-	x := &Duration{}
-	if val != _zeroDuration {
-		x.Store(val)
-	}
-	return x
-}
+func NewDuration(val time.Duration) *Duration { _ = "STUB: not implemented"; return nil }
 
 // Load atomically loads the wrapped time.Duration.
-func (x *Duration) Load() time.Duration {
-	return time.Duration(x.v.Load())
-}
+func (x *Duration) Load() time.Duration { _ = "STUB: not implemented"; return *new(time.Duration) }
 
 // Store atomically stores the passed time.Duration.
-func (x *Duration) Store(val time.Duration) {
-	x.v.Store(int64(val))
-}
+func (x *Duration) Store(val time.Duration) { _ = "STUB: not implemented"; return }
 
 // CAS is an atomic compare-and-swap for time.Duration values.
 //
 // Deprecated: Use CompareAndSwap.
 func (x *Duration) CAS(old, new time.Duration) (swapped bool) {
-	return x.CompareAndSwap(old, new)
+	_ = "STUB: not implemented"
+	return false
 }
 
 // CompareAndSwap is an atomic compare-and-swap for time.Duration values.
 func (x *Duration) CompareAndSwap(old, new time.Duration) (swapped bool) {
-	return x.v.CompareAndSwap(int64(old), int64(new))
+	_ = "STUB: not implemented"
+	return false
 }
 
 // Swap atomically stores the given time.Duration and returns the old
 // value.
 func (x *Duration) Swap(val time.Duration) (old time.Duration) {
-	return time.Duration(x.v.Swap(int64(val)))
+	_ = "STUB: not implemented"
+	return *new(time.Duration)
 }
 
 // MarshalJSON encodes the wrapped time.Duration into JSON.
-func (x *Duration) MarshalJSON() ([]byte, error) {
-	return json.Marshal(x.Load())
-}
+func (x *Duration) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // UnmarshalJSON decodes a time.Duration from JSON.
-func (x *Duration) UnmarshalJSON(b []byte) error {
-	var v time.Duration
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	x.Store(v)
-	return nil
-}
+func (x *Duration) UnmarshalJSON(b []byte) error { _ = "STUB: not implemented"; return nil }

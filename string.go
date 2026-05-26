@@ -32,41 +32,23 @@ type String struct {
 var _zeroString string
 
 // NewString creates a new String.
-func NewString(val string) *String {
-	x := &String{}
-	if val != _zeroString {
-		x.Store(val)
-	}
-	return x
-}
+func NewString(val string) *String { _ = "STUB: not implemented"; return nil }
 
 // Load atomically loads the wrapped string.
-func (x *String) Load() string {
-	return unpackString(x.v.Load())
-}
+func (x *String) Load() string { _ = "STUB: not implemented"; return "" }
 
 // Store atomically stores the passed string.
-func (x *String) Store(val string) {
-	x.v.Store(packString(val))
-}
+func (x *String) Store(val string) { _ = "STUB: not implemented"; return }
 
 // CompareAndSwap is an atomic compare-and-swap for string values.
 func (x *String) CompareAndSwap(old, new string) (swapped bool) {
-	if x.v.CompareAndSwap(packString(old), packString(new)) {
-		return true
-	}
-
-	if old == _zeroString {
-		// If the old value is the empty value, then it's possible the
-		// underlying Value hasn't been set and is nil, so retry with nil.
-		return x.v.CompareAndSwap(nil, packString(new))
-	}
-
+	_ = "STUB: not implemented"
 	return false
 }
 
+// If the old value is the empty value, then it's possible the
+// underlying Value hasn't been set and is nil, so retry with nil.
+
 // Swap atomically stores the given string and returns the old
 // value.
-func (x *String) Swap(val string) (old string) {
-	return unpackString(x.v.Swap(packString(val)))
-}
+func (x *String) Swap(val string) (old string) { _ = "STUB: not implemented"; return "" }

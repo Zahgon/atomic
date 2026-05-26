@@ -36,20 +36,10 @@ type Time struct {
 var _zeroTime time.Time
 
 // NewTime creates a new Time.
-func NewTime(val time.Time) *Time {
-	x := &Time{}
-	if val != _zeroTime {
-		x.Store(val)
-	}
-	return x
-}
+func NewTime(val time.Time) *Time { _ = "STUB: not implemented"; return nil }
 
 // Load atomically loads the wrapped time.Time.
-func (x *Time) Load() time.Time {
-	return unpackTime(x.v.Load())
-}
+func (x *Time) Load() time.Time { _ = "STUB: not implemented"; return *new(time.Time) }
 
 // Store atomically stores the passed time.Time.
-func (x *Time) Store(val time.Time) {
-	x.v.Store(packTime(val))
-}
+func (x *Time) Store(val time.Time) { _ = "STUB: not implemented"; return }
